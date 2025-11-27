@@ -820,6 +820,21 @@
                         font-size: 0.9rem !important;
                     }
                 }
+                
+                /* Mobile text color fix for simulator summary */
+                @media (max-width: 968px) {
+                    .summary-box {
+                        background: rgba(255, 255, 255, 0.95) !important;
+                    }
+                    
+                    .summary-heading {
+                        color: #1e293b !important;
+                    }
+                    
+                    .summary-text {
+                        color: #475569 !important;
+                    }
+                }
             </style>
   </section><!-- Services Section -->
   <section id="services" style="padding: 160px 24px 140px; position: relative; background: rgba(0, 0, 0, 0.15);">
@@ -1212,9 +1227,9 @@
          </div>
         </div>
        </div>
-       <div class="glass" style="padding: 28px; margin-top: 32px; background: rgba(255, 255, 255, 0.03);">
-        <h4 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 18px; color: #f8fafc;">Strategic Summary</h4>
-        <p id="summary" style="color: #e2e8f0; line-height: 1.9; font-size: 1.1rem;"></p>
+       <div class="glass summary-box" style="padding: 28px; margin-top: 32px; background: rgba(255, 255, 255, 0.03);">
+        <h4 class="summary-heading" style="font-size: 1.3rem; font-weight: 700; margin-bottom: 18px; color: #f8fafc;">Strategic Summary</h4>
+        <p id="summary" class="summary-text" style="color: #e2e8f0; line-height: 1.9; font-size: 1.1rem;"></p>
        </div>
        <div style="margin-top: 24px; padding: 20px; background: rgba(139, 92, 246, 0.1); border-left: 3px solid #8b5cf6; border-radius: 10px;">
         <p style="color: #c4b5fd; font-size: 0.9rem; font-style: italic;">Note: This is an illustrative framework only, not a recommendation or financial advice. Actual strategies require comprehensive discovery and personalized design.</p>
@@ -1859,5 +1874,5 @@
             }
         });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a544ff767f00cba',t:'MTc2NDI3NDY4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a5453caf1fd0cba',t:'MTc2NDI3NDgzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
