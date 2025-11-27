@@ -1,0 +1,1165 @@
+<!doctype doctype>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senior | Private Wealth Strategy</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1d3a 50%, #0f1629 100%);
+            color: #e8edf5;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInScale 0.8s ease-out forwards;
+        }
+
+        .parallax {
+            transition: transform 0.3s ease-out;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+        }
+
+        .glow {
+            box-shadow: 0 0 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .animated-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: 7s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            top: 50%;
+            left: 50%;
+            animation-delay: 14s;
+        }
+
+        .cityscape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 300px;
+            background: linear-gradient(to top, rgba(10, 14, 39, 0.9), transparent);
+            overflow: hidden;
+        }
+
+        .building {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.02));
+            border-top: 1px solid rgba(99, 102, 241, 0.15);
+            opacity: 0.8;
+        }
+
+        .building::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 20px,
+                rgba(99, 102, 241, 0.03) 20px,
+                rgba(99, 102, 241, 0.03) 22px
+            );
+        }
+
+        .building-window {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(139, 92, 246, 0.6);
+            animation: windowFlicker 4s ease-in-out infinite;
+            box-shadow: 0 0 4px rgba(139, 92, 246, 0.8);
+        }
+
+        @keyframes windowFlicker {
+            0% { opacity: 0.3; }
+            10% { opacity: 0.9; }
+            15% { opacity: 0.4; }
+            25% { opacity: 1; }
+            30% { opacity: 0.5; }
+            45% { opacity: 0.8; }
+            60% { opacity: 0.3; }
+            70% { opacity: 1; }
+            85% { opacity: 0.6; }
+            100% { opacity: 0.3; }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .stat-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e8edf5 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e8edf5;
+            padding: 16px 32px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+            border: none;
+        }
+
+        .chart-bar {
+            transition: all 0.6s ease;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem !important;
+            }
+            
+            .timeline-item {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .timeline-item > div:first-child {
+                text-align: left !important;
+                padding-right: 0 !important;
+                padding-left: 20px !important;
+                border-left: 2px solid rgba(99, 102, 241, 0.3);
+            }
+            
+            .timeline-line {
+                display: none;
+            }
+            
+            .cityscape {
+                height: 150px;
+            }
+            
+            .building {
+                transform: scale(0.7);
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem !important;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+        }
+
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        input, textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e8edf5;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(232, 237, 245, 0.4);
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body>
+  <div style="width: 100%; position: relative;"><!-- Hero Section -->
+   <section style="position: relative; min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 80px 24px; overflow: hidden;">
+    <div class="animated-bg">
+     <div class="orb orb-1"></div>
+     <div class="orb orb-2"></div>
+     <div class="orb orb-3"></div>
+    </div>
+    <div class="cityscape" id="cityscape"></div>
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center; position: relative; z-index: 1;">
+     <div style="display: inline-block; padding: 8px 20px; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 50px; margin-bottom: 32px; font-size: 0.9rem; font-weight: 500;"><span id="advisor-name">Senior</span> | Independent Wealth Strategist
+     </div>
+     <h1 id="hero-headline" style="font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 32px; background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Architect of Complex Private Wealth Structures for the 0.1%</h1>
+     <p id="hero-subhead" style="font-size: 1.4rem; color: #cbd5e1; max-width: 800px; margin: 0 auto 48px; font-weight: 300; line-height: 1.8;">25+ years advising UHNW clients at Citi, Bank of America, and US Bank. Now serving you as an independent fiduciary.</p>
+     <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;"><button id="cta-primary" class="btn-primary">Schedule a Confidential Call</button> <button id="cta-secondary" class="btn-secondary" onclick="document.getElementById('simulator').scrollIntoView({behavior: 'smooth'})">Explore the Strategy Simulator</button>
+     </div>
+    </div>
+   </section><!-- Value Proposition -->
+   <section style="padding: 120px 24px; position: relative; background: rgba(0, 0, 0, 0.3);">
+    <div style="max-width: 1400px; margin: 0 auto;">
+     <div style="text-align: center; margin-bottom: 80px;">
+      <div style="display: inline-block; padding: 10px 24px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15)); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 50px; margin-bottom: 24px; font-size: 0.95rem; font-weight: 600; color: #c4b5fd;">
+       Your Chief Banking &amp; Wealth Strategy Officer
+      </div>
+      <h2 class="section-title" style="max-width: 900px; margin: 0 auto 24px;">I Design, Negotiate &amp; Oversee Your Entire Wealth Infrastructure</h2>
+      <p style="font-size: 1.3rem; color: #cbd5e1; max-width: 800px; margin: 0 auto; line-height: 1.9; font-weight: 300;">After 30 years as a Managing Director in private banking, I now work exclusively for you—not the bank. I quarterback your entire banking, credit, and investment ecosystem so every relationship serves your goals.</p>
+     </div>
+     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; max-width: 1300px; margin: 0 auto;">
+      <div class="glass stat-card" style="padding: 44px; text-align: center; border: 1px solid rgba(139, 92, 246, 0.2);">
+       <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);">
+        <svg width="44" height="44" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="white" opacity="0.9" /> <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">Pattern Recognition</h3>
+       <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.8;">I've reviewed hundreds of balance sheets, family dynamics, and structures. I know what works and what breaks.</p>
+      </div>
+      <div class="glass stat-card" style="padding: 44px; text-align: center; border: 1px solid rgba(139, 92, 246, 0.2);">
+       <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);">
+        <svg width="44" height="44" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2" fill="none" /> <path d="M8 12l3 3 5-6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">Deal &amp; Product Filter</h3>
+       <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.8;">I separate signal from noise in every bank pitch, investment idea, and credit proposal that crosses your desk.</p>
+      </div>
+      <div class="glass stat-card" style="padding: 44px; text-align: center; border: 1px solid rgba(139, 92, 246, 0.2);">
+       <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: linear-gradient(135deg, #6366f1, #ec4899); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);">
+        <svg width="44" height="44" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="7" r="3" stroke="white" stroke-width="2" fill="none" /> <circle cx="15" cy="7" r="3" stroke="white" stroke-width="2" fill="none" /> <path d="M9 12c-3 0-5 2-5 4v4h10v-4c0-2-2-4-5-4z" stroke="white" stroke-width="2" fill="none" /> <path d="M15 12c-3 0-5 2-5 4v4h10v-4c0-2-2-4-5-4z" stroke="white" stroke-width="2" fill="none" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">Institutional Relationships</h3>
+       <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.8;">I know who to call for credit lines, special situations, complex structures, and co-investment opportunities.</p>
+      </div>
+      <div class="glass stat-card" style="padding: 44px; text-align: center; border: 1px solid rgba(139, 92, 246, 0.2);">
+       <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: linear-gradient(135deg, #8b5cf6, #6366f1); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);">
+        <svg width="44" height="44" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="white" stroke-width="2" fill="none" /> <path d="M9 22V12h6v10" stroke="white" stroke-width="2" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">Translation Layer</h3>
+       <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.8;">I translate bank, legal, and tax speak into clear decisions you can act on with confidence.</p>
+      </div>
+     </div>
+     <div class="glass glow" style="margin-top: 60px; padding: 56px; max-width: 1100px; margin-left: auto; margin-right: auto; text-align: center; border: 1px solid rgba(99, 102, 241, 0.3);">
+      <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 20px; color: #e8edf5; line-height: 1.4;">What This Actually Means</h3>
+      <p style="font-size: 1.25rem; color: #cbd5e1; line-height: 1.9; margin-bottom: 0;">I become your <span style="color: #a5b4fc; font-weight: 600;">Chief Banking &amp; Wealth Strategy Officer</span>—designing your strategy, assembling specialists, negotiating better terms, and ensuring you're never sold to without someone on your side at the table. I serve 5–15 families, not 200 bank clients.</p>
+     </div>
+    </div>
+   </section><!-- Ideal Client Situations -->
+   <section style="padding: 120px 24px; position: relative;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+     <div style="text-align: center; margin-bottom: 80px;">
+      <div style="display: inline-block; padding: 10px 24px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15)); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 50px; margin-bottom: 24px; font-size: 0.95rem; font-weight: 600; color: #c4b5fd;">
+       Who This Is For
+      </div>
+      <h2 class="section-title">I Win Fastest in Specific Situations</h2>
+      <p style="font-size: 1.3rem; color: #cbd5e1; max-width: 850px; margin: 0 auto; line-height: 1.9; font-weight: 300;">I don't chase every UHNW individual. I specialize in moments of complexity where pattern recognition and quarterback coordination create outsized value.</p>
+     </div>
+     <div style="display: grid; gap: 32px; max-width: 1200px; margin: 0 auto;">
+      <div class="glass glow stat-card" style="padding: 48px; border: 1px solid rgba(99, 102, 241, 0.25);">
+       <div style="display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start;">
+        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4);">
+         <svg width="44" height="44" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="white" opacity="0.9" /> <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+         </svg>
+        </div>
+        <div>
+         <h3 style="font-size: 1.7rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">Post-Liquidity Founders</h3>
+         <p style="color: #cbd5e1; font-size: 1.15rem; margin-bottom: 20px; line-height: 1.8;">You just sold your company or took it public. Now 5–10 banks are pitching you products, structures, and ideas. You're overwhelmed and don't know who to trust.</p>
+         <div style="background: rgba(99, 102, 241, 0.1); border-left: 3px solid #6366f1; padding: 20px; border-radius: 8px;">
+          <p style="color: #a5b4fc; font-size: 1.05rem; font-weight: 600; margin-bottom: 8px;">What I Do:</p>
+          <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.8; margin: 0;">I filter the noise, negotiate better terms on your behalf, design a rational banking infrastructure, and ensure you're not eaten alive by the wealth machine. You focus on your next chapter—I handle the banks.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="glass glow stat-card" style="padding: 48px; border: 1px solid rgba(139, 92, 246, 0.25);">
+       <div style="display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start;">
+        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);">
+         <svg width="44" height="44" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="white" stroke-width="2" fill="none" /> <path d="M9 22V12h6v10" stroke="white" stroke-width="2" />
+         </svg>
+        </div>
+        <div>
+         <h3 style="font-size: 1.7rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">Asset-Rich, Cash-Flow-Heavy Business Owners</h3>
+         <p style="color: #cbd5e1; font-size: 1.15rem; margin-bottom: 20px; line-height: 1.8;">You own significant real estate or operating businesses. You're generating strong cash flow but your balance sheet is under-optimized—overleveraged in the wrong places, underleveraged in others.</p>
+         <div style="background: rgba(139, 92, 246, 0.1); border-left: 3px solid #8b5cf6; padding: 20px; border-radius: 8px;">
+          <p style="color: #c4b5fd; font-size: 1.05rem; font-weight: 600; margin-bottom: 8px;">What I Do:</p>
+          <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.8; margin: 0;">I redesign your credit architecture to unlock capital, reduce cost, and create flexibility. I coordinate banks, lawyers, and CPAs to build a structure that matches your growth plans and liquidity needs.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="glass glow stat-card" style="padding: 48px; border: 1px solid rgba(99, 102, 241, 0.25);">
+       <div style="display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start;">
+        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #6366f1, #ec4899); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4);">
+         <svg width="44" height="44" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="7" r="3" stroke="white" stroke-width="2" fill="none" /> <circle cx="15" cy="7" r="3" stroke="white" stroke-width="2" fill="none" /> <path d="M9 12c-3 0-5 2-5 4v4h10v-4c0-2-2-4-5-4z" stroke="white" stroke-width="2" fill="none" /> <path d="M15 12c-3 0-5 2-5 4v4h10v-4c0-2-2-4-5-4z" stroke="white" stroke-width="2" fill="none" />
+         </svg>
+        </div>
+        <div>
+         <h3 style="font-size: 1.7rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">Multi-Bank, Cross-Border Families</h3>
+         <p style="color: #cbd5e1; font-size: 1.15rem; margin-bottom: 20px; line-height: 1.8;">You have 3–5 banking relationships, accounts across jurisdictions, overlapping structures, and no single person coordinating it all. Nobody has the full picture—including you.</p>
+         <div style="background: rgba(236, 72, 153, 0.1); border-left: 3px solid #ec4899; padding: 20px; border-radius: 8px;">
+          <p style="color: #f9a8d4; font-size: 1.05rem; font-weight: 600; margin-bottom: 8px;">What I Do:</p>
+          <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.8; margin: 0;">I consolidate the chaos. I map your entire ecosystem, identify gaps and redundancies, rationalize your structure, and serve as the central quarterback who ensures every relationship is optimized and aligned.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="glass glow stat-card" style="padding: 48px; border: 1px solid rgba(139, 92, 246, 0.25);">
+       <div style="display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start;">
+        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #8b5cf6, #6366f1); border-radius: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);">
+         <svg width="44" height="44" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 10 12 6.16-1.26 10-6.45 10-12V7l-10-5z" stroke="white" stroke-width="2" fill="none" /> <circle cx="12" cy="13" r="3" fill="white" />
+         </svg>
+        </div>
+        <div>
+         <h3 style="font-size: 1.7rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">First-Gen Wealth Worried About Succession</h3>
+         <p style="color: #cbd5e1; font-size: 1.15rem; margin-bottom: 20px; line-height: 1.8;">You built significant wealth, but you're worried about the next generation and don't know where to start with estate planning, governance, or family education. You're not ready for a full-blown Single Family Office.</p>
+         <div style="background: rgba(99, 102, 241, 0.1); border-left: 3px solid #6366f1; padding: 20px; border-radius: 8px;">
+          <p style="color: #a5b4fc; font-size: 1.05rem; font-weight: 600; margin-bottom: 8px;">What I Do:</p>
+          <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.8; margin: 0;">I design a phased succession roadmap, coordinate with your estate attorney and CPA, build governance frameworks, and educate the next gen on stewardship—without the cost or complexity of a full SFO.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- How It Works - Engagement Model -->
+   <section style="padding: 120px 24px; position: relative; background: rgba(0, 0, 0, 0.3);">
+    <div style="max-width: 1400px; margin: 0 auto;">
+     <div style="text-align: center; margin-bottom: 80px;">
+      <div style="display: inline-block; padding: 10px 24px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15)); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 50px; margin-bottom: 24px; font-size: 0.95rem; font-weight: 600; color: #c4b5fd;">
+       The Engagement Model
+      </div>
+      <h2 class="section-title">How We Work Together</h2>
+      <p style="font-size: 1.3rem; color: #cbd5e1; max-width: 850px; margin: 0 auto; line-height: 1.9; font-weight: 300;">Simple, transparent, and completely aligned. No commissions. No conflicts. You pay me to quarterback your wealth infrastructure—nothing else.</p>
+     </div>
+     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; max-width: 1300px; margin: 0 auto 60px;">
+      <div class="glass stat-card" style="padding: 44px; border: 1px solid rgba(99, 102, 241, 0.2);">
+       <div style="display: inline-block; padding: 8px 20px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 50px; margin-bottom: 20px; font-size: 0.85rem; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.5px;">
+        Core Model
+       </div>
+       <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">Annual Retainer</h3>
+       <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.8; margin-bottom: 24px;">Flat annual fee scaled by family complexity and net worth—no AUM fees, no commissions, no hidden charges.</p>
+       <div style="background: rgba(99, 102, 241, 0.08); border-radius: 12px; padding: 20px;">
+        <p style="color: #a5b4fc; font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;">What's Included:</p>
+        <div style="display: grid; gap: 10px;">
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• Consolidated review of all banking/credit/investment relationships</p>
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• Annual Capital Strategy Plan + ongoing triage</p>
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• Quarterly or semiannual deep-dive sessions</p>
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• On-call negotiation support with banks and vendors</p>
+        </div>
+       </div>
+      </div>
+      <div class="glass stat-card" style="padding: 44px; border: 1px solid rgba(139, 92, 246, 0.2);">
+       <div style="display: inline-block; padding: 8px 20px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); border-radius: 50px; margin-bottom: 20px; font-size: 0.85rem; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.5px;">
+        Transparency
+       </div>
+       <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">Zero Conflicts</h3>
+       <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.8; margin-bottom: 24px;">I am not compensated by banks, managers, or product providers. Your interests are my only interests.</p>
+       <div style="background: rgba(139, 92, 246, 0.08); border-radius: 12px; padding: 20px;">
+        <p style="color: #c4b5fd; font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;">What You See:</p>
+        <div style="display: grid; gap: 10px;">
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• Fee breaks I negotiate from banks (before/after)</p>
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• Better lending terms (margin, covenants, advance rates)</p>
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• Full disclosure of any third-party arrangements</p>
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• Transparent reporting on every relationship</p>
+        </div>
+       </div>
+      </div>
+      <div class="glass stat-card" style="padding: 44px; border: 1px solid rgba(236, 72, 153, 0.2);">
+       <div style="display: inline-block; padding: 8px 20px; background: linear-gradient(135deg, #ec4899, #f472b6); border-radius: 50px; margin-bottom: 20px; font-size: 0.85rem; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.5px;">
+        Scope
+       </div>
+       <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">What I Don't Do</h3>
+       <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.8; margin-bottom: 24px;">I stay in my lane as your quarterback—I coordinate specialists, I don't replace them.</p>
+       <div style="background: rgba(236, 72, 153, 0.08); border-radius: 12px; padding: 20px;">
+        <p style="color: #f9a8d4; font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;">I Am Not:</p>
+        <div style="display: grid; gap: 10px;">
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• Your portfolio manager or asset allocator</p>
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• Your tax lawyer or estate attorney</p>
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• Your family office accountant or CFO</p>
+         <p style="color: #cbd5e1; font-size: 0.95rem;">• A registered investment advisor (RIA)</p>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="glass glow" style="padding: 56px; max-width: 1100px; margin: 0 auto; text-align: center; border: 1px solid rgba(99, 102, 241, 0.3);">
+      <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; color: #e8edf5;">Where I Sit in Your Ecosystem</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; margin-top: 40px; text-align: center;">
+       <div style="padding: 24px; background: rgba(99, 102, 241, 0.08); border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.2);">
+        <p style="color: #a5b4fc; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Private Banks</p>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Credit, custody, banking</p>
+       </div>
+       <div style="padding: 24px; background: rgba(139, 92, 246, 0.08); border-radius: 12px; border: 1px solid rgba(139, 92, 246, 0.2);">
+        <p style="color: #c4b5fd; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Lawyers &amp; CPAs</p>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Legal, tax, compliance</p>
+       </div>
+       <div style="padding: 24px; background: rgba(236, 72, 153, 0.08); border-radius: 12px; border: 1px solid rgba(236, 72, 153, 0.2);">
+        <p style="color: #f9a8d4; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">PE Funds &amp; Managers</p>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Investments, deals, co-invests</p>
+       </div>
+      </div>
+      <div style="margin-top: 32px; padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+       <div style="display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 12px; box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4);">
+        <p style="color: white; font-size: 1.15rem; font-weight: 700; margin: 0;">↑ I Coordinate All of This ↑</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Wealth Strategy Simulator -->
+   <section id="simulator" style="padding: 120px 24px; position: relative;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+     <div style="text-align: center; margin-bottom: 60px;">
+      <div style="display: inline-block; padding: 8px 20px; background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 50px; margin-bottom: 24px; font-size: 0.9rem; font-weight: 600; color: #c4b5fd;">
+       Interactive Tool
+      </div>
+      <h2 class="section-title">Wealth Strategy Simulator</h2>
+      <p style="font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 0 auto;">Explore how a strategist like Senior might approach your wealth profile. Illustrative only — not financial advice.</p>
+     </div>
+     <div class="glass glow" style="padding: 48px;">
+      <div style="display: grid; gap: 32px; margin-bottom: 48px;">
+       <div><label style="display: block; font-weight: 600; margin-bottom: 12px; color: #e8edf5; font-size: 1.05rem;">Net Worth / Investable Assets</label> <input type="range" id="netWorth" min="10" max="500" value="50" step="10">
+        <div style="display: flex; justify-content: space-between; margin-top: 8px; color: #94a3b8; font-size: 0.9rem;"><span>$10M</span> <span id="netWorthValue" style="font-weight: 700; color: #a5b4fc;">$50M</span> <span>$500M+</span>
+        </div>
+       </div>
+       <div><label style="display: block; font-weight: 600; margin-bottom: 12px; color: #e8edf5; font-size: 1.05rem;">Concentration Risk (%)</label> <input type="range" id="concentration" min="0" max="90" value="40" step="5">
+        <div style="display: flex; justify-content: space-between; margin-top: 8px; color: #94a3b8; font-size: 0.9rem;"><span>Diversified</span> <span id="concentrationValue" style="font-weight: 700; color: #a5b4fc;">40%</span> <span>Highly Concentrated</span>
+        </div>
+       </div>
+       <div><label style="display: block; font-weight: 600; margin-bottom: 12px; color: #e8edf5; font-size: 1.05rem;">Liquidity Horizon</label> <input type="range" id="liquidity" min="1" max="3" value="2" step="1">
+        <div style="display: flex; justify-content: space-between; margin-top: 8px; color: #94a3b8; font-size: 0.9rem;"><span>Immediate</span> <span id="liquidityValue" style="font-weight: 700; color: #a5b4fc;">3-7 Years</span> <span>10+ Years</span>
+        </div>
+       </div>
+       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div><label style="display: block; font-weight: 600; margin-bottom: 12px; color: #e8edf5; font-size: 1.05rem;">Target Leverage</label> <select id="leverage" style="width: 100%; padding: 14px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: #e8edf5; font-size: 1rem; cursor: pointer;"> <option value="low">Conservative</option> <option value="med" selected>Moderate</option> <option value="high">Aggressive</option> </select>
+        </div>
+        <div><label style="display: block; font-weight: 600; margin-bottom: 12px; color: #e8edf5; font-size: 1.05rem;">Estate Planning Priority</label> <select id="estate" style="width: 100%; padding: 14px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: #e8edf5; font-size: 1rem; cursor: pointer;"> <option value="low">Not Primary Focus</option> <option value="med" selected>Important</option> <option value="high">Critical</option> </select>
+        </div>
+       </div>
+      </div><button class="btn-primary" style="width: 100%; margin-bottom: 48px;" onclick="calculateStrategy()">Generate Strategy Outline</button>
+      <div id="results" style="display: none;">
+       <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 48px;">
+        <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 32px; color: #e8edf5;">Suggested Allocation Framework</h3>
+        <div style="display: grid; gap: 16px; margin-bottom: 40px;">
+         <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="min-width: 140px; color: #cbd5e1; font-weight: 600;">
+           Liquid Core
+          </div>
+          <div style="flex: 1; background: rgba(255, 255, 255, 0.05); border-radius: 10px; height: 32px; position: relative; overflow: hidden;">
+           <div id="liquidBar" class="chart-bar" style="background: linear-gradient(90deg, #3b82f6, #6366f1); height: 100%; border-radius: 10px; transition: width 0.6s ease;"></div>
+          </div>
+          <div id="liquidPct" style="min-width: 50px; text-align: right; color: #a5b4fc; font-weight: 700;">
+           30%
+          </div>
+         </div>
+         <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="min-width: 140px; color: #cbd5e1; font-weight: 600;">
+           Private Markets
+          </div>
+          <div style="flex: 1; background: rgba(255, 255, 255, 0.05); border-radius: 10px; height: 32px; position: relative; overflow: hidden;">
+           <div id="privateBar" class="chart-bar" style="background: linear-gradient(90deg, #8b5cf6, #a78bfa); height: 100%; border-radius: 10px; transition: width 0.6s ease;"></div>
+          </div>
+          <div id="privatePct" style="min-width: 50px; text-align: right; color: #a5b4fc; font-weight: 700;">
+           35%
+          </div>
+         </div>
+         <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="min-width: 140px; color: #cbd5e1; font-weight: 600;">
+           Structured Credit
+          </div>
+          <div style="flex: 1; background: rgba(255, 255, 255, 0.05); border-radius: 10px; height: 32px; position: relative; overflow: hidden;">
+           <div id="creditBar" class="chart-bar" style="background: linear-gradient(90deg, #6366f1, #8b5cf6); height: 100%; border-radius: 10px; transition: width 0.6s ease;"></div>
+          </div>
+          <div id="creditPct" style="min-width: 50px; text-align: right; color: #a5b4fc; font-weight: 700;">
+           20%
+          </div>
+         </div>
+         <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="min-width: 140px; color: #cbd5e1; font-weight: 600;">
+           Hedged/Optioned
+          </div>
+          <div style="flex: 1; background: rgba(255, 255, 255, 0.05); border-radius: 10px; height: 32px; position: relative; overflow: hidden;">
+           <div id="hedgeBar" class="chart-bar" style="background: linear-gradient(90deg, #ec4899, #f472b6); height: 100%; border-radius: 10px; transition: width 0.6s ease;"></div>
+          </div>
+          <div id="hedgePct" style="min-width: 50px; text-align: right; color: #a5b4fc; font-weight: 700;">
+           15%
+          </div>
+         </div>
+        </div>
+        <div class="glass" style="padding: 24px; margin-top: 32px;">
+         <h4 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; color: #e8edf5;">Strategic Summary</h4>
+         <p id="summary" style="color: #cbd5e1; line-height: 1.8; font-size: 1.05rem;"></p>
+        </div>
+        <div style="margin-top: 24px; padding: 20px; background: rgba(139, 92, 246, 0.1); border-left: 3px solid #8b5cf6; border-radius: 10px;">
+         <p style="color: #c4b5fd; font-size: 0.9rem; font-style: italic;">Note: This is an illustrative framework only, not a recommendation or financial advice. Actual strategies require comprehensive discovery and personalized design.</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Track Record Timeline -->
+   <section style="padding: 120px 24px; position: relative;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+     <div style="text-align: center; margin-bottom: 80px;">
+      <h2 class="section-title">Track Record</h2>
+      <p style="font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 0 auto;">Two and a half decades advising the most sophisticated wealth holders at the world's leading institutions.</p>
+     </div>
+     <div style="position: relative; padding: 40px 0;">
+      <div class="timeline-line"></div>
+      <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; animation-delay: 0.1s;">
+       <div style="text-align: right; padding-right: 40px;">
+        <div style="font-size: 0.9rem; color: #8b5cf6; font-weight: 700; margin-bottom: 8px;">
+         1997 – 2001
+        </div>
+        <h3 style="font-size: 1.4rem; font-weight: 700; color: #e8edf5; margin-bottom: 8px;">Citi Personal Wealth</h3>
+        <p style="color: #94a3b8; font-size: 0.95rem;">Building foundations in high-net-worth advisory</p>
+       </div>
+       <div></div>
+      </div>
+      <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; animation-delay: 0.2s;">
+       <div></div>
+       <div style="padding-left: 40px;">
+        <div style="font-size: 0.9rem; color: #6366f1; font-weight: 700; margin-bottom: 8px;">
+         2001 – 2019
+        </div>
+        <h3 style="font-size: 1.4rem; font-weight: 700; color: #e8edf5; margin-bottom: 8px;">Citi Private Bank</h3>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 12px;">Senior Managing Director</p>
+        <div class="glass" style="padding: 16px; display: inline-block;">
+         <p style="color: #a5b4fc; font-weight: 700; font-size: 1.1rem;">$3B+ Portfolio Originated</p>
+         <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 4px;">$40M+ Annual Revenue Leadership</p>
+        </div>
+       </div>
+      </div>
+      <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; animation-delay: 0.3s;">
+       <div style="text-align: right; padding-right: 40px;">
+        <div style="font-size: 0.9rem; color: #8b5cf6; font-weight: 700; margin-bottom: 8px;">
+         2019 – 2022
+        </div>
+        <h3 style="font-size: 1.4rem; font-weight: 700; color: #e8edf5; margin-bottom: 8px;">Bank of America Private Bank</h3>
+        <p style="color: #94a3b8; font-size: 0.95rem;">Senior Vice President, expanding complex credit and alternatives</p>
+       </div>
+       <div></div>
+      </div>
+      <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; animation-delay: 0.4s;">
+       <div></div>
+       <div style="padding-left: 40px;">
+        <div style="font-size: 0.9rem; color: #6366f1; font-weight: 700; margin-bottom: 8px;">
+         2022 – 2024
+        </div>
+        <h3 style="font-size: 1.4rem; font-weight: 700; color: #e8edf5; margin-bottom: 8px;">US Bank Private Wealth</h3>
+        <p style="color: #94a3b8; font-size: 0.95rem;">Senior Vice President, deepening expertise in structured solutions</p>
+       </div>
+      </div>
+      <div class="timeline-item" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; animation-delay: 0.5s;">
+       <div style="text-align: right; padding-right: 40px;">
+        <div style="font-size: 0.9rem; color: #ec4899; font-weight: 700; margin-bottom: 8px;">
+         2024 – Present
+        </div>
+        <h3 style="font-size: 1.4rem; font-weight: 700; color: #e8edf5; margin-bottom: 8px;">EIA Advisors &amp; Independent Practice</h3>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 12px;">Now serving clients as independent fiduciary</p>
+        <div class="glass glow" style="padding: 16px; display: inline-block;">
+         <p style="color: #f472b6; font-weight: 700; font-size: 1rem;">25+ Years UHNW Experience</p>
+         <p style="color: #cbd5e1; font-size: 0.85rem; margin-top: 4px;">Zero Institutional Conflicts</p>
+        </div>
+       </div>
+       <div></div>
+      </div>
+     </div>
+     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 80px;">
+      <div class="glass stat-card" style="padding: 32px; text-align: center;">
+       <div style="font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px;">
+        25+
+       </div>
+       <p style="color: #94a3b8; font-size: 1rem;">Years Advising UHNW</p>
+      </div>
+      <div class="glass stat-card" style="padding: 32px; text-align: center;">
+       <div style="font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #8b5cf6, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px;">
+        $3B+
+       </div>
+       <p style="color: #94a3b8; font-size: 1rem;">Portfolio Originated</p>
+      </div>
+      <div class="glass stat-card" style="padding: 32px; text-align: center;">
+       <div style="font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px;">
+        $40M+
+       </div>
+       <p style="color: #94a3b8; font-size: 1rem;">Annual Revenue Leadership</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Process -->
+   <section style="padding: 120px 24px; position: relative; background: rgba(0, 0, 0, 0.2);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+     <div style="text-align: center; margin-bottom: 80px;">
+      <h2 class="section-title">Process</h2>
+      <p style="font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 0 auto;">A disciplined approach to understanding, designing, and evolving complex wealth structures.</p>
+     </div>
+     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px;">
+      <div class="glass stat-card" style="padding: 40px; text-align: center;">
+       <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+        <svg width="40" height="40" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8" stroke="white" stroke-width="2" /> <path d="M21 21l-4.35-4.35" stroke="white" stroke-width="2" stroke-linecap="round" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: #e8edf5;">Discover</h3>
+       <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7;">Deep exploration of your wealth profile, goals, constraints, and existing structures to identify opportunities and risks.</p>
+      </div>
+      <div class="glass stat-card" style="padding: 40px; text-align: center;">
+       <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: linear-gradient(135deg, #8b5cf6, #a78bfa); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+        <svg width="40" height="40" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="white" /> <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: #e8edf5;">Design</h3>
+       <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7;">Architect tailored strategies across liquidity, allocation, tax, estate, and risk management—clear, actionable, and aligned to your priorities.</p>
+      </div>
+      <div class="glass stat-card" style="padding: 40px; text-align: center;">
+       <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+        <svg width="40" height="40" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="2" fill="white" /> <circle cx="15" cy="9" r="2" fill="white" /> <path d="M9 11v6M15 11v6M9 17h6" stroke="white" stroke-width="2" stroke-linecap="round" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: #e8edf5;">Coordinate</h3>
+       <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7;">Orchestrate implementation across your legal, tax, and fiduciary advisors—ensuring seamless execution without friction or duplication.</p>
+      </div>
+      <div class="glass stat-card" style="padding: 40px; text-align: center;">
+       <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: linear-gradient(135deg, #8b5cf6, #ec4899); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+        <svg width="40" height="40" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3v18h18" stroke="white" stroke-width="2" stroke-linecap="round" /> <path d="M7 14l4-4 3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: #e8edf5;">Evolve</h3>
+       <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7;">Continuous refinement as markets shift, liquidity events occur, and family dynamics change—your strategy adapts with you.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Insights -->
+   <section style="padding: 120px 24px; position: relative;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+     <div style="text-align: center; margin-bottom: 80px;">
+      <h2 class="section-title">Insights</h2>
+      <p style="font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 0 auto;">Perspectives on navigating complexity in private markets, credit, and legacy planning.</p>
+     </div>
+     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+      <div class="glass stat-card" style="padding: 32px;">
+       <div style="width: 100%; height: 200px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2)); border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; justify-content: center;">
+        <svg width="80" height="80" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3v18h18" stroke="#8b5cf6" stroke-width="2" /> <rect x="7" y="8" width="3" height="10" fill="#6366f1" /> <rect x="12" y="5" width="3" height="13" fill="#8b5cf6" /> <rect x="17" y="11" width="3" height="7" fill="#a78bfa" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: #e8edf5;">Accessing Private Markets Without Overconcentration</h3>
+       <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7;">Balancing illiquid allocations with liquidity needs and avoiding the trap of excessive manager concentration in PE and VC.</p>
+      </div>
+      <div class="glass stat-card" style="padding: 32px;">
+       <div style="width: 100%; height: 200px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(167, 139, 250, 0.2)); border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; justify-content: center;">
+        <svg width="80" height="80" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="16" height="10" rx="2" stroke="#8b5cf6" stroke-width="2" fill="none" /> <path d="M4 12h16" stroke="#8b5cf6" stroke-width="2" /> <circle cx="8" cy="15" r="1" fill="#a78bfa" /> <circle cx="12" cy="15" r="1" fill="#a78bfa" /> <circle cx="16" cy="15" r="1" fill="#a78bfa" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: #e8edf5;">Strategic Credit as Patient Capital</h3>
+       <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7;">Using asset-backed and structured credit facilities to unlock value from illiquid holdings without forced sale timing or tax acceleration.</p>
+      </div>
+      <div class="glass stat-card" style="padding: 32px;">
+       <div style="width: 100%; height: 200px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2)); border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; justify-content: center;">
+        <svg width="80" height="80" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 20h18v-8L12 3 3 12v8z" stroke="#8b5cf6" stroke-width="2" fill="none" /> <path d="M9 20v-6h6v6" stroke="#ec4899" stroke-width="2" /> <rect x="6" y="9" width="2" height="2" fill="#6366f1" /> <rect x="16" y="9" width="2" height="2" fill="#6366f1" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: #e8edf5;">Estate Planning for the Truly Complex</h3>
+       <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7;">Designing multi-generational structures that minimize friction, preserve intent, and coordinate seamlessly across legal and tax advisors.</p>
+      </div>
+      <div class="glass stat-card" style="padding: 32px;">
+       <div style="width: 100%; height: 200px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(99, 102, 241, 0.2)); border-radius: 12px; margin-bottom: 24px; display: flex; align-items: center; justify-content: center;">
+        <svg width="80" height="80" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7v6c0 5.55 3.84 10.74 10 12 6.16-1.26 10-6.45 10-12V7L12 2z" stroke="#8b5cf6" stroke-width="2" fill="none" /> <path d="M12 8v4M12 16h.01" stroke="#6366f1" stroke-width="2" stroke-linecap="round" />
+        </svg>
+       </div>
+       <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: #e8edf5;">Philanthropy That Works</h3>
+       <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7;">Building donor-advised funds and private foundations that align values, optimize tax efficiency, and create measurable impact.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Testimonials -->
+   <section style="padding: 120px 24px; position: relative; background: rgba(0, 0, 0, 0.2);">
+    <div style="max-width: 1000px; margin: 0 auto;">
+     <div style="text-align: center; margin-bottom: 80px;">
+      <h2 class="section-title">What Clients Say</h2>
+      <p style="font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 0 auto;">Discreet perspectives from those navigating complexity with confidence.</p>
+     </div>
+     <div style="display: grid; gap: 32px;">
+      <div class="glass glow" style="padding: 40px;">
+       <p style="color: #cbd5e1; font-size: 1.15rem; line-height: 1.9; margin-bottom: 24px; font-style: italic;">"Senior helped us structure a liquidity facility against our private equity holdings without forcing a sale at the wrong time. The clarity and precision were exactly what we needed."</p>
+       <div style="display: flex; align-items: center; gap: 16px;">
+        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #8b5cf6);"></div>
+        <div>
+         <div style="font-weight: 700; color: #e8edf5;">
+          Hedge Fund Principal
+         </div>
+         <div style="color: #94a3b8; font-size: 0.9rem;">
+          New York, NY
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="glass glow" style="padding: 40px;">
+       <p style="color: #cbd5e1; font-size: 1.15rem; line-height: 1.9; margin-bottom: 24px; font-style: italic;">"After 25 years building a real estate portfolio, we needed an advisor who understood complexity without oversimplifying. Senior coordinated our estate planning with surgical precision."</p>
+       <div style="display: flex; align-items: center; gap: 16px;">
+        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #a78bfa);"></div>
+        <div>
+         <div style="font-weight: 700; color: #e8edf5;">
+          Real Estate Entrepreneur
+         </div>
+         <div style="color: #94a3b8; font-size: 0.9rem;">
+          Miami, FL
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="glass glow" style="padding: 40px;">
+       <p style="color: #cbd5e1; font-size: 1.15rem; line-height: 1.9; margin-bottom: 24px; font-style: italic;">"What sets Senior apart is the calm guidance through options most advisors never mention. No products, no pressure—just strategic clarity we could trust."</p>
+       <div style="display: flex; align-items: center; gap: 16px;">
+        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #ec4899);"></div>
+        <div>
+         <div style="font-weight: 700; color: #e8edf5;">
+          Family Office, Multi-Generational
+         </div>
+         <div style="color: #94a3b8; font-size: 0.9rem;">
+          San Francisco, CA
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="glass glow" style="padding: 40px;">
+       <p style="color: #cbd5e1; font-size: 1.15rem; line-height: 1.9; margin-bottom: 24px; font-style: italic;">"Senior designed a pre-IPO hedging strategy that protected us through volatility while preserving upside. The kind of thinking you only get from someone who's sat across from this hundreds of times."</p>
+       <div style="display: flex; align-items: center; gap: 16px;">
+        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #6366f1);"></div>
+        <div>
+         <div style="font-weight: 700; color: #e8edf5;">
+          Tech Executive
+         </div>
+         <div style="color: #94a3b8; font-size: 0.9rem;">
+          Austin, TX
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Final CTA / Contact -->
+   <section style="padding: 120px 24px; position: relative;">
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+     <h2 class="section-title" style="margin-bottom: 32px;">Work With a Strategist Who Sat Inside—And Now Sits Outside</h2>
+     <p style="font-size: 1.25rem; color: #cbd5e1; line-height: 1.9; margin-bottom: 48px;">For 25 years, I advised UHNW clients from within the largest private banks in the world. I saw what worked, what didn't, and where conflicts emerged. Now I work exclusively for you—no products, no quotas, no institutional agenda. Just independent, fiduciary guidance for clients whose wealth demands more than conventional advice.</p>
+     <div class="glass glow" style="padding: 60px; margin-bottom: 48px;">
+      <h3 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 24px; color: #e8edf5;">Start the Conversation</h3>
+      <p style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 40px; line-height: 1.8;">Reach out directly via WhatsApp for a discreet, confidential discussion about your wealth strategy needs.</p><a href="https://wa.me/1234567890?text=Hello%2C%20I%27d%20like%20to%20discuss%20a%20confidential%20wealth%20strategy%20consultation." target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-size: 1.1rem; padding: 20px 40px;">
+       <svg width="28" height="28" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor" />
+       </svg> Message on WhatsApp </a>
+     </div>
+     <p id="footer-tagline" style="color: #94a3b8; font-size: 0.95rem;">Independent. Fiduciary. Experienced. Built for complexity.</p>
+    </div>
+   </section><!-- Footer -->
+   <footer style="padding: 40px 24px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+    <p style="color: #64748b; font-size: 0.9rem;">© 2024 <span id="footer-name">Senior</span> Wealth Advisory. All rights reserved.</p>
+   </footer>
+  </div>
+  <script>
+        const defaultConfig = {
+            hero_headline: "Architect of Complex Private Wealth Structures for the 0.1%",
+            hero_subhead: "25+ years advising UHNW clients at Citi, Bank of America, and US Bank. Now serving you as an independent fiduciary.",
+            cta_primary: "Schedule a Confidential Call",
+            cta_secondary: "Explore the Strategy Simulator",
+            company_name: "Senior",
+            footer_text: "Independent. Fiduciary. Experienced. Built for complexity."
+        };
+
+        const config = defaultConfig;
+
+        async function onConfigChange(config) {
+            document.getElementById('hero-headline').textContent = config.hero_headline || defaultConfig.hero_headline;
+            document.getElementById('hero-subhead').textContent = config.hero_subhead || defaultConfig.hero_subhead;
+            document.getElementById('cta-primary').textContent = config.cta_primary || defaultConfig.cta_primary;
+            document.getElementById('cta-secondary').textContent = config.cta_secondary || defaultConfig.cta_secondary;
+            document.getElementById('advisor-name').textContent = config.company_name || defaultConfig.company_name;
+            document.getElementById('footer-name').textContent = config.company_name || defaultConfig.company_name;
+            document.getElementById('footer-tagline').textContent = config.footer_text || defaultConfig.footer_text;
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["hero_headline", config.hero_headline || defaultConfig.hero_headline],
+                ["hero_subhead", config.hero_subhead || defaultConfig.hero_subhead],
+                ["cta_primary", config.cta_primary || defaultConfig.cta_primary],
+                ["cta_secondary", config.cta_secondary || defaultConfig.cta_secondary],
+                ["company_name", config.company_name || defaultConfig.company_name],
+                ["footer_text", config.footer_text || defaultConfig.footer_text]
+            ]);
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
+
+        // Calculator functionality
+        const netWorthSlider = document.getElementById('netWorth');
+        const concentrationSlider = document.getElementById('concentration');
+        const liquiditySlider = document.getElementById('liquidity');
+        const netWorthValue = document.getElementById('netWorthValue');
+        const concentrationValue = document.getElementById('concentrationValue');
+        const liquidityValue = document.getElementById('liquidityValue');
+
+        netWorthSlider.addEventListener('input', (e) => {
+            netWorthValue.textContent = `$${e.target.value}M`;
+        });
+
+        concentrationSlider.addEventListener('input', (e) => {
+            concentrationValue.textContent = `${e.target.value}%`;
+        });
+
+        liquiditySlider.addEventListener('input', (e) => {
+            const values = ['Immediate', '3-7 Years', '10+ Years'];
+            liquidityValue.textContent = values[e.target.value - 1];
+        });
+
+        function calculateStrategy() {
+            const netWorth = parseInt(netWorthSlider.value);
+            const concentration = parseInt(concentrationSlider.value);
+            const liquidity = parseInt(liquiditySlider.value);
+            const leverage = document.getElementById('leverage').value;
+            const estate = document.getElementById('estate').value;
+
+            // Calculate allocation percentages
+            let liquidPct = 30;
+            let privatePct = 35;
+            let creditPct = 20;
+            let hedgePct = 15;
+
+            // Adjust based on concentration
+            if (concentration > 60) {
+                hedgePct += 10;
+                liquidPct -= 5;
+                privatePct -= 5;
+            } else if (concentration < 20) {
+                privatePct += 10;
+                liquidPct -= 5;
+                hedgePct -= 5;
+            }
+
+            // Adjust based on liquidity horizon
+            if (liquidity === 1) {
+                liquidPct += 15;
+                privatePct -= 15;
+            } else if (liquidity === 3) {
+                privatePct += 10;
+                liquidPct -= 10;
+            }
+
+            // Adjust based on leverage
+            if (leverage === 'high') {
+                creditPct += 10;
+                liquidPct -= 5;
+                privatePct -= 5;
+            } else if (leverage === 'low') {
+                creditPct -= 10;
+                liquidPct += 10;
+            }
+
+            // Update chart bars
+            document.getElementById('liquidBar').style.width = liquidPct + '%';
+            document.getElementById('privateBar').style.width = privatePct + '%';
+            document.getElementById('creditBar').style.width = creditPct + '%';
+            document.getElementById('hedgeBar').style.width = hedgePct + '%';
+
+            document.getElementById('liquidPct').textContent = liquidPct + '%';
+            document.getElementById('privatePct').textContent = privatePct + '%';
+            document.getElementById('creditPct').textContent = creditPct + '%';
+            document.getElementById('hedgePct').textContent = hedgePct + '%';
+
+            // Generate summary
+            let summary = `For a ${netWorth > 100 ? 'highly sophisticated' : 'substantial'} wealth profile with ${concentration > 50 ? 'significant concentration risk' : 'moderate diversification'}, a strategist like Senior might explore: `;
+
+            if (concentration > 60) {
+                summary += `an emphasis on hedging and downside protection through options strategies, while `;
+            }
+
+            summary += `allocating ${liquidPct}% to liquid core positions for immediate access, ${privatePct}% to carefully selected private markets opportunities with ${liquidity === 3 ? 'patient' : liquidity === 1 ? 'shorter' : 'medium-term'} capital horizons, ${creditPct}% to structured credit facilities that unlock value from existing holdings, and ${hedgePct}% to hedged or optioned positions that manage concentrated exposure.`;
+
+            if (estate === 'high') {
+                summary += ` Given high estate planning priority, this framework would integrate with trust structures, generation-skipping strategies, and coordinated legal/tax design.`;
+            } else if (estate === 'med') {
+                summary += ` Estate considerations would inform trust architecture and multi-generational planning as appropriate.`;
+            }
+
+            if (leverage === 'high') {
+                summary += ` Strategic use of credit could amplify returns while maintaining prudent risk management.`;
+            }
+
+            document.getElementById('summary').textContent = summary;
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Generate cityscape
+        function generateCityscape() {
+            const cityscape = document.getElementById('cityscape');
+            if (!cityscape) return;
+            
+            const buildingCount = 20;
+            for (let i = 0; i < buildingCount; i++) {
+                const building = document.createElement('div');
+                building.className = 'building';
+                
+                const width = 40 + Math.random() * 60;
+                const height = 80 + Math.random() * 180;
+                const left = (i / buildingCount) * 100;
+                
+                building.style.width = width + 'px';
+                building.style.height = height + 'px';
+                building.style.left = left + '%';
+                
+                // Add windows with random flicker patterns
+                const windowCount = Math.floor(Math.random() * 15) + 5;
+                for (let j = 0; j < windowCount; j++) {
+                    const window = document.createElement('div');
+                    window.className = 'building-window';
+                    window.style.left = (10 + Math.random() * 70) + '%';
+                    window.style.top = (10 + Math.random() * 70) + '%';
+                    window.style.animationDelay = (Math.random() * 4) + 's';
+                    window.style.animationDuration = (3 + Math.random() * 2) + 's';
+                    building.appendChild(window);
+                }
+                
+                cityscape.appendChild(building);
+            }
+        }
+
+        // Initialize cityscape
+        generateCityscape();
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax');
+            
+            parallaxElements.forEach(el => {
+                const speed = el.dataset.speed || 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all stat cards
+        document.querySelectorAll('.stat-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // CTA button actions
+        document.getElementById('cta-primary').addEventListener('click', () => {
+            window.open('https://wa.me/1234567890?text=Hello%2C%20I%27d%20like%20to%20discuss%20a%20confidential%20wealth%20strategy%20consultation.', '_blank', 'noopener,noreferrer');
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a53a646f0e80c99',t:'MTc2NDI2NzczMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
