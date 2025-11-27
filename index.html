@@ -276,7 +276,15 @@
             transition: all 0.6s ease;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
+            #desktop-nav {
+                display: none !important;
+            }
+            
+            #mobile-menu-btn {
+                display: block !important;
+            }
+            
             .section-title {
                 font-size: 2rem;
             }
@@ -306,6 +314,25 @@
             
             .building {
                 transform: scale(0.7);
+            }
+            
+            /* Mobile optimizations for all sections */
+            section {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+            
+            .glass {
+                padding: 24px !important;
+            }
+            
+            div[style*="grid-template-columns: repeat(2, 1fr)"],
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            div[style*="grid-template-columns: repeat(auto-fit"] {
+                grid-template-columns: 1fr !important;
             }
         }
 
@@ -367,7 +394,7 @@
  </head>
  <body>
   <div style="width: 100%; position: relative;"><!-- Navigation -->
-   <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 14, 39, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+   <nav style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 14, 39, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
     <div style="max-width: 1400px; margin: 0 auto; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center;">
      <div style="display: flex; align-items: center; gap: 16px;">
       <div style="position: relative; width: 52px; height: 52px;">
@@ -396,8 +423,16 @@
         </svg>
        </div>
       </div>
-     </div>
-     <div style="display: flex; gap: 32px; align-items: center;"><a href="#about" style="color: #cbd5e1; text-decoration: none; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem;" onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#cbd5e1'">About</a> <a href="#services" style="color: #cbd5e1; text-decoration: none; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem;" onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#cbd5e1'">Services</a> <a href="#clients" style="color: #cbd5e1; text-decoration: none; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem;" onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#cbd5e1'">Who We Serve</a> <a href="#simulator" style="color: #cbd5e1; text-decoration: none; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem;" onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#cbd5e1'">Strategy Tool</a> <a href="https://gosellery.com" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding: 12px 28px; font-size: 0.9rem; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3); text-decoration: none;">Contact Now</a>
+     </div><!-- Desktop Navigation -->
+     <div id="desktop-nav" style="display: flex; gap: 32px; align-items: center;"><a href="#about" style="color: #cbd5e1; text-decoration: none; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem;" onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#cbd5e1'">About</a> <a href="#services" style="color: #cbd5e1; text-decoration: none; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem;" onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#cbd5e1'">Services</a> <a href="#clients" style="color: #cbd5e1; text-decoration: none; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem;" onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#cbd5e1'">Who We Serve</a> <a href="#simulator" style="color: #cbd5e1; text-decoration: none; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem;" onmouseover="this.style.color='#a5b4fc'" onmouseout="this.style.color='#cbd5e1'">Strategy Tool</a> <a href="https://gosellery.com" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding: 12px 28px; font-size: 0.9rem; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3); text-decoration: none;">Contact Now</a>
+     </div><!-- Mobile Hamburger Button --> <button id="mobile-menu-btn" onclick="toggleMobileMenu()" style="display: none; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001;">
+      <svg id="hamburger-icon" width="32" height="32" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18M3 6h18M3 18h18" stroke="#e8edf5" stroke-width="2.5" stroke-linecap="round" />
+      </svg>
+      <svg id="close-icon" width="32" height="32" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;"><path d="M6 6l12 12M18 6L6 18" stroke="#e8edf5" stroke-width="2.5" stroke-linecap="round" />
+      </svg></button>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" style="display: none; position: fixed; top: 92px; left: 0; right: 0; background: rgba(10, 14, 39, 0.98); backdrop-filter: blur(30px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 24px; max-height: calc(100vh - 92px); overflow-y: auto;">
+     <div style="display: flex; flex-direction: column; gap: 24px;"><a href="#about" onclick="closeMobileMenu()" style="color: #e8edf5; text-decoration: none; font-weight: 600; font-size: 1.1rem; padding: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">About</a> <a href="#services" onclick="closeMobileMenu()" style="color: #e8edf5; text-decoration: none; font-weight: 600; font-size: 1.1rem; padding: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">Services</a> <a href="#clients" onclick="closeMobileMenu()" style="color: #e8edf5; text-decoration: none; font-weight: 600; font-size: 1.1rem; padding: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">Who We Serve</a> <a href="#simulator" onclick="closeMobileMenu()" style="color: #e8edf5; text-decoration: none; font-weight: 600; font-size: 1.1rem; padding: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">Strategy Tool</a> <a href="https://gosellery.com" target="_blank" rel="noopener noreferrer" class="btn-primary" style="text-align: center; padding: 16px 32px; font-size: 1rem; text-decoration: none; margin-top: 12px;">Contact Now</a>
      </div>
     </div>
    </nav><!-- Hero Section -->
@@ -961,7 +996,7 @@
        Interactive Tool
       </div>
       <h2 class="section-title">Wealth Strategy Simulator</h2>
-      <p style="font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 0 auto;">Explore how a strategist like Senior might approach your wealth profile. Illustrative only — not financial advice.</p>
+      <p style="font-size: 1.2rem; color: #94a3b8; max-width: 700px; margin: 0 auto;">Explore how a strategist like EIA Advisors might approach your wealth profile. Illustrative only — not financial advice.</p>
      </div>
      <div class="glass glow" style="padding: 48px;">
       <div style="display: grid; gap: 32px; margin-bottom: 48px;">
@@ -1145,7 +1180,7 @@
      </div>
      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;">
       <div class="glass glow stat-card" style="padding: 44px; border: 1px solid rgba(99, 102, 241, 0.2);">
-       <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.9; margin-bottom: 28px; font-style: italic;">"Senior helped us structure a liquidity facility against our private equity holdings without forcing a sale at the wrong time. The clarity and precision were exactly what we needed."</p>
+       <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.9; margin-bottom: 28px; font-style: italic;">"EIA Advisors helped us structure a liquidity facility against our private equity holdings without forcing a sale at the wrong time. The clarity and precision were exactly what we needed."</p>
        <div style="display: flex; align-items: center; gap: 16px;">
         <div style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #8b5cf6);"></div>
         <div>
@@ -1159,7 +1194,7 @@
        </div>
       </div>
       <div class="glass glow stat-card" style="padding: 44px; border: 1px solid rgba(139, 92, 246, 0.2);">
-       <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.9; margin-bottom: 28px; font-style: italic;">"After 25 years building a real estate portfolio, we needed an advisor who understood complexity without oversimplifying. Senior coordinated our estate planning with surgical precision."</p>
+       <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.9; margin-bottom: 28px; font-style: italic;">"After 25 years building a real estate portfolio, we needed an advisor who understood complexity without oversimplifying. EIA Advisors coordinated our estate planning with surgical precision."</p>
        <div style="display: flex; align-items: center; gap: 16px;">
         <div style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #a78bfa);"></div>
         <div>
@@ -1173,7 +1208,7 @@
        </div>
       </div>
       <div class="glass glow stat-card" style="padding: 44px; border: 1px solid rgba(99, 102, 241, 0.2);">
-       <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.9; margin-bottom: 28px; font-style: italic;">"What sets Senior apart is the calm guidance through options most advisors never mention. No products, no pressure—just strategic clarity we could trust."</p>
+       <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.9; margin-bottom: 28px; font-style: italic;">"What sets EIA Advisors apart is the calm guidance through options most advisors never mention. No products, no pressure—just strategic clarity we could trust."</p>
        <div style="display: flex; align-items: center; gap: 16px;">
         <div style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #ec4899);"></div>
         <div>
@@ -1187,7 +1222,7 @@
        </div>
       </div>
       <div class="glass glow stat-card" style="padding: 44px; border: 1px solid rgba(139, 92, 246, 0.2);">
-       <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.9; margin-bottom: 28px; font-style: italic;">"Senior designed a pre-IPO hedging strategy that protected us through volatility while preserving upside. The kind of thinking you only get from someone who's sat across from this hundreds of times."</p>
+       <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.9; margin-bottom: 28px; font-style: italic;">"EIA Advisors designed a pre-IPO hedging strategy that protected us through volatility while preserving upside. The kind of thinking you only get from someone who's sat across from this hundreds of times."</p>
        <div style="display: flex; align-items: center; gap: 16px;">
         <div style="width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #6366f1);"></div>
         <div>
@@ -1357,7 +1392,7 @@
             document.getElementById('hedgePct').textContent = hedgePct + '%';
 
             // Generate summary
-            let summary = `For a ${netWorth > 100 ? 'highly sophisticated' : 'substantial'} wealth profile with ${concentration > 50 ? 'significant concentration risk' : 'moderate diversification'}, a strategist like Senior might explore: `;
+            let summary = `For a ${netWorth > 100 ? 'highly sophisticated' : 'substantial'} wealth profile with ${concentration > 50 ? 'significant concentration risk' : 'moderate diversification'}, a strategist like EIA Advisors might explore: `;
 
             if (concentration > 60) {
                 summary += `an emphasis on hedging and downside protection through options strategies, while `;
@@ -1451,6 +1486,45 @@
         document.getElementById('cta-primary').addEventListener('click', () => {
             window.open('https://wa.me/1234567890?text=Hello%2C%20I%27d%20like%20to%20discuss%20a%20confidential%20wealth%20strategy%20consultation.', '_blank', 'noopener,noreferrer');
         });
+
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            if (mobileMenu.style.display === 'none' || mobileMenu.style.display === '') {
+                mobileMenu.style.display = 'block';
+                hamburgerIcon.style.display = 'none';
+                closeIcon.style.display = 'block';
+            } else {
+                mobileMenu.style.display = 'none';
+                hamburgerIcon.style.display = 'block';
+                closeIcon.style.display = 'none';
+            }
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+            
+            mobileMenu.style.display = 'none';
+            hamburgerIcon.style.display = 'block';
+            closeIcon.style.display = 'none';
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            
+            if (mobileMenu.style.display === 'block' && 
+                !mobileMenu.contains(e.target) && 
+                !mobileMenuBtn.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a53e265174914a8',t:'MTc2NDI3MDE5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a53e5c4e2b714a8',t:'MTc2NDI3MDMzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
